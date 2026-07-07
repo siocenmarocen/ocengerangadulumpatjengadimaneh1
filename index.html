@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://pl29610553.effectivecpmnetwork.com/00/b3/0b/00b30be936e1d02c38339647535c2711.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ADULT GAME 3D ONLINE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* VIDEO BACKGROUND - FULL LAYAR */
+        .video-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        /* BRAND - pojok kiri atas */
+        .brand {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 3;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #f5c842;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* KONTEN TENGAH - CENTER */
+        .center-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* ===== HEADLINE BARU ===== */
+        .headline-main {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 30px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .headline-main .highlight {
+            color: #f5c842;
+        }
+
+        .headline-sub {
+            font-size: 22px;
+            font-weight: 300;
+            color: #f0e8e0;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        /* ===== CHARACTER SELECTOR ===== */
+        .char-selector-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #f5c842;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .char-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .char-card {
+            width: 160px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0;
+            overflow: visible;
+        }
+
+        .char-card:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .char-card .char-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            position: relative;
+            overflow: hidden;
+            background: transparent !important;
+            border-radius: 20px;
+            border: 3px solid transparent;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .char-card .char-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+            border-radius: 20px;
+        }
+
+        .char-card:hover .char-image img {
+            transform: scale(1.06);
+        }
+
+        .char-card:hover .char-image {
+            border-color: #f5c842;
+        }
+
+        .char-card.selected .char-image {
+            border-color: #f5c842;
+            box-shadow: 0 0 40px rgba(245, 200, 66, 0.35);
+        }
+
+        .char-card .char-name {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-top: 8px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        /* ===== TOMBOL PINK ===== */
+        .btn-pink {
+            background: #e83e8c;
+            border: none;
+            border-radius: 50px;
+            padding: 18px 55px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(232, 62, 140, 0.5);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            z-index: 5;
+        }
+
+        .btn-pink:hover {
+            background: #d6337a;
+            transform: scale(1.05);
+            box-shadow: 0 6px 40px rgba(232, 62, 140, 0.6);
+        }
+
+        .btn-pink:active {
+            transform: scale(0.95);
+        }
+
+        .btn-pink a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* ===== RESPONSIF ===== */
+        @media (max-width: 768px) {
+            .char-card {
+                width: 130px;
+            }
+            .char-grid {
+                gap: 20px;
+            }
+            .headline-main {
+                font-size: 38px;
+            }
+            .headline-sub {
+                font-size: 18px;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand {
+                top: 20px;
+                left: 20px;
+                font-size: 16px;
+                letter-spacing: 3px;
+            }
+            
+            .headline-main {
+                font-size: 28px;
+                max-width: 90%;
+            }
+            
+            .headline-sub {
+                font-size: 14px;
+                letter-spacing: 2.5px;
+                margin-bottom: 16px;
+                max-width: 90%;
+            }
+
+            .char-selector-title {
+                font-size: 12px;
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+            }
+
+            .char-card {
+                width: 105px;
+            }
+            
+            .char-card .char-name {
+                font-size: 12px;
+            }
+
+            .char-grid {
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .btn-pink {
+                padding: 14px 35px;
+                font-size: 17px;
+                letter-spacing: 1.5px;
+                width: 90%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .brand {
+                top: 15px;
+                left: 15px;
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+            
+            .headline-main {
+                font-size: 22px;
+            }
+            
+            .headline-sub {
+                font-size: 12px;
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+            }
+
+            .char-card {
+                width: 85px;
+            }
+
+            .char-card .char-image {
+                border-radius: 14px;
+            }
+
+            .char-card .char-name {
+                font-size: 10px;
+            }
+
+            .char-grid {
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .char-selector-title {
+                font-size: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .btn-pink {
+                padding: 12px 25px;
+                font-size: 15px;
+                max-width: 240px;
+            }
+        }
+
+        @media (max-height: 650px) {
+            .headline-main {
+                font-size: 28px;
+            }
+            
+            .headline-sub {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
+            .char-card {
+                width: 110px;
+            }
+
+            .char-grid {
+                gap: 16px;
+                margin-bottom: 16px;
+            }
+
+            .char-selector-title {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+
+            .char-card .char-name {
+                font-size: 12px;
+            }
+            
+            .btn-pink {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VIDEO BACKGROUND - FULL LAYAR -->
+    <div class="video-wrapper">
+        <video id="bg-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://cdn.aceimg.com/yJdyw0rCQ.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="overlay"></div>
+
+    <!-- BRAND -->
+    <div class="brand">ADULT GAME 3D</div>
+
+    <!-- KONTEN TENGAH -->
+    <div class="center-content">
+
+        <!-- ===== HEADLINE BARU ===== -->
+        <div class="headline-main">
+            PICK ONE TO <span class="highlight">FUCK!</span>
+        </div>
+
+        <div class="headline-sub">
+            WHICH GIRL DO YOU FANCY?
+        </div>
+
+        <!-- ===== CHARACTER SELECTOR ===== -->
+        <div class="char-selector-title">✦ CHOOSE YOUR GODDESS ✦</div>
+
+        <div class="char-grid">
+
+            <!-- Character 1: Lilith -->
+            <div class="char-card js-char" data-char="lilith">
+                <div class="char-image">
+                    <img src="https://imgh.in/host/rmo3xw" alt="Lilith">
+                </div>
+                <span class="char-name">FLORENCE</span>
+            </div>
+
+            <!-- Character 2: Astra -->
+            <div class="char-card js-char" data-char="astra">
+                <div class="char-image">
+                    <img src="https://imgh.in/host/j0mngp" alt="Astra">
+                </div>
+                <span class="char-name">MADELEINE</span>
+            </div>
+
+            <!-- Character 3: Nyx -->
+            <div class="char-card js-char" data-char="nyx">
+                <div class="char-image">
+                    <img src="https://imgh.in/host/2dajbj" alt="Nyx">
+                </div>
+                <span class="char-name">KITTY</span>
+            </div>
+
+        </div>
+
+        <!-- TOMBOL PINK DI TENGAH -->
+        <a href="https://www.effectivecpmnetwork.com/ukr355ygww?key=c7ec7cda1733d3c2ea7fc8932ecdc6bd" target="_blank" rel="noopener noreferrer" class="btn-pink">
+            PLAY GAME NOW
+        </a>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chars = document.querySelectorAll('.js-char');
+
+            chars.forEach(char => {
+                char.addEventListener('click', function() {
+                    // Remove selection from all
+                    chars.forEach(c => c.classList.remove('selected'));
+
+                    // Add selection to clicked
+                    this.classList.add('selected');
+
+                    // Get character name
+                    const name = this.querySelector('.char-name')?.textContent || 'Goddess';
+
+                    // Update title
+                    const title = document.querySelector('.char-selector-title');
+
+                    if (title) {
+                        title.style.transition = 'opacity 0.2s';
+                        title.style.opacity = '0';
+                        setTimeout(() => {
+                            title.textContent = `✦ ${name} Awaits ✦`;
+                            title.style.opacity = '1';
+                        }, 200);
+                    }
+
+                    console.log(`Selected: ${name}`);
+                });
+            });
+        });
+    </script>
+  <!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5002164,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5002164&101" alt="" border="0"></a></noscript>
+<!-- Histats.com  END  -->
+
+</body>
+</html>
